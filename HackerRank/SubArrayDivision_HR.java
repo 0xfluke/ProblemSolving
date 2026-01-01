@@ -14,3 +14,21 @@ public static int birthday(List<Integer> s, int d, int m) {
     }
 
 // This is the window sliding technique used version with O(n) complexity
+public static int birthday(List<Integer> s, int d, int m) {
+        int result = 0;
+        int firstSum = 0;
+        for (int i=0 ; i < m; i++){
+            firstSum += s.get(i);
+        }
+        if(firstSum == d){
+            result++;
+        }
+        int windowSum = firstSum;
+        for (int j = m ; j < s.size(); j++){
+            windowSum += (s.get(j) - s.get(j - m));
+            if(windowSum == d){
+                result++;
+            }
+        }
+        return result;
+    }
